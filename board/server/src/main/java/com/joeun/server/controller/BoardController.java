@@ -23,21 +23,21 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/boards")
 public class BoardController {
-
+    
     @Autowired
     private BoardService boardService;
 
     // 👩‍💻 CRUD 메소드 자동 생성 : sp-crud
-    // 👩‍💻 자동 import : alt + shift + O
+    // 👩‍💻 자동 import : alt + shift + O      
     // 👩‍💻 한 줄 삭제 : ctrl + shift + K
     @GetMapping()
     public ResponseEntity<?> getAll() {
         log.info("[GET] - /boards - 게시글 목록");
         try {
             List<Board> boardList = boardService.list();
-            if (boardList == null)
+            if( boardList == null )
                 log.info("조회된 게시글 없음");
-            else
+            else 
                 log.info("게시글 수 : " + boardList.size());
 
             return new ResponseEntity<>(boardList, HttpStatus.OK);
@@ -46,49 +46,50 @@ public class BoardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
     @GetMapping("/{no}")
     public ResponseEntity<?> getOne(@PathVariable Integer no) {
-        log.info("[GET] - /boards/" + no + " - 게시글 조회");
+        log.info("[GET] - /boards/" + no  + " - 게시글 조회");
         try {
             Board board = boardService.select(no);
-            if (board == null) {
+            if( board == null ) {
                 board = new Board();
                 board.setTitle("데이터 없음");
                 return new ResponseEntity<>(board, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(board, HttpStatus.OK);
             }
-
+            else {
+                return new ResponseEntity<>(board, HttpStatus.OK); 
+            }
+                
         } catch (Exception e) {
             log.error(null, e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
     @PostMapping()
     public ResponseEntity<?> create(@RequestBody Board board) {
         log.info("[POST] - /boards - 게시글 등록");
         try {
             int result = boardService.insert(board);
-            if (result > 0)
-                return new ResponseEntity<>("게시글 등록 완료", HttpStatus.CREATED); // 201
+            if( result > 0 )
+                return new ResponseEntity<>("게시글 등록 완료", HttpStatus.CREATED);  // 201
             else
-                return new ResponseEntity<>("게시글 등록 실패", HttpStatus.OK);
+                return new ResponseEntity<>("게시글 등록 실패", HttpStatus.OK);  
 
         } catch (Exception e) {
             log.error(null, e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
     @PutMapping()
     public ResponseEntity<?> update(@RequestBody Board board) {
         log.info("[PUT] - /boards - 게시글 수정");
         try {
             int result = boardService.update(board);
-            if (result > 0)
-                return new ResponseEntity<>("게시글 수정 완료", HttpStatus.OK);
+            if( result > 0 )
+                return new ResponseEntity<>("게시글 수정 완료", HttpStatus.OK); 
             else
                 return new ResponseEntity<>("게시글 수정 실패", HttpStatus.OK);
         } catch (Exception e) {
@@ -96,14 +97,14 @@ public class BoardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
     @DeleteMapping("/{no}")
     public ResponseEntity<?> destroy(@PathVariable Integer no) {
         log.info("[DELETE] - /boards/" + no + " - 게시글 삭제");
         try {
             int result = boardService.delete(no);
-            if (result > 0)
-                return new ResponseEntity<>("게시글 삭제 완료", HttpStatus.OK);
+            if( result > 0 )
+                return new ResponseEntity<>("게시글 삭제 완료", HttpStatus.OK); 
             else
                 return new ResponseEntity<>("게시글 삭제 실패", HttpStatus.OK);
         } catch (Exception e) {
