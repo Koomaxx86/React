@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as boards from '../apis/boards'
-import BoardInsertForm from '../components/BoardInsertForm';
+import BoardInsertForm from '../components/BoardInsert/BoardInsertForm';
 
 //👩‍💻 게시글 등록
 const BoardInsertContainer = () => {

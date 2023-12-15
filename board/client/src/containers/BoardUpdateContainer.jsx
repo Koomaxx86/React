@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import * as boards from '../apis/boards'
-import BoardUpdateForm from '../components/BoardUpdateForm';
+import BoardUpdateForm from '../components/BoardUpdate/BoardUpdateForm';
 
 // 👩‍💻 게시글 수정
 const BoardUpdateContainer = () => {

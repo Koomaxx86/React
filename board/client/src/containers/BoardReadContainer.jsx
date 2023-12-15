@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import * as boards from '../apis/boards'
-import BoardRead from '../components/BoardRead';
+import BoardRead from '../components/BoardRead/BoardRead';
 
 // 👩‍💻 게시글 조회
 const BoardReadContainer = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as boards from '../apis/boards'
-import BoardList from '../components/BoardList'
+import BoardList from '../components/BoardList/BoardList'
 
 // 👩‍💻 게시글 목록
 const BoardListContainer = () => {
